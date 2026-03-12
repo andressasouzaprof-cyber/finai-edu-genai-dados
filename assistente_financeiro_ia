@@ -1,0 +1,132 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPzU5F64IH80Q4qIU9bTxOq",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/andressasouzaprof-cyber/finai-edu-genai-dados/blob/main/assistente_financeiro_ia\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Assistente Financeiro com IA Generativa\n",
+        "# Projeto desenvolvido para o desafio da DIO"
+      ],
+      "metadata": {
+        "id": "S4QKIk5OIdas"
+      },
+      "execution_count": 1,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "faq = {\n",
+        "    \"o que é tesouro selic\": \"Tesouro Selic é um título público do governo brasileiro considerado de baixo risco.\",\n",
+        "    \"o que é cdi\": \"CDI é uma taxa usada como referência para diversos investimentos.\",\n",
+        "    \"o que é investimento\": \"Investimento é aplicar dinheiro esperando retorno futuro.\"\n",
+        "}"
+      ],
+      "metadata": {
+        "id": "RFjhPeGZIi-4"
+      },
+      "execution_count": 2,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def simulador_investimento(valor_mensal, taxa, meses):\n",
+        "    montante = 0\n",
+        "\n",
+        "    for i in range(meses):\n",
+        "        montante = (montante + valor_mensal) * (1 + taxa)\n",
+        "\n",
+        "    return round(montante, 2)"
+      ],
+      "metadata": {
+        "id": "X6eoZR_7IlIK"
+      },
+      "execution_count": 3,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def assistente():\n",
+        "\n",
+        "    pergunta = input(\"Digite sua pergunta financeira: \").lower()\n",
+        "\n",
+        "    if pergunta in faq:\n",
+        "        print(\"Assistente:\", faq[pergunta])\n",
+        "\n",
+        "    elif \"simular investimento\" in pergunta:\n",
+        "\n",
+        "        valor = float(input(\"Valor mensal: \"))\n",
+        "        taxa = float(input(\"Taxa mensal (ex: 0.01 para 1%): \"))\n",
+        "        meses = int(input(\"Quantidade de meses: \"))\n",
+        "\n",
+        "        resultado = simulador_investimento(valor, taxa, meses)\n",
+        "\n",
+        "        print(\"Assistente:\")\n",
+        "        print(f\"Se você investir R${valor} por {meses} meses, terá aproximadamente R${resultado}\")\n",
+        "\n",
+        "    else:\n",
+        "        print(\"Assistente: Desculpe, ainda estou aprendendo sobre esse assunto.\")"
+      ],
+      "metadata": {
+        "id": "aBEYSpAnJmm4"
+      },
+      "execution_count": 6,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "assistente()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "spbRfovmJolt",
+        "outputId": "54caf490-5e43-48a9-f62b-dbbe56cc8196"
+      },
+      "execution_count": 7,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Digite sua pergunta financeira: simular investimento\n",
+            "Valor mensal: 500\n",
+            "Taxa mensal (ex: 0.01 para 1%): 0.01\n",
+            "Quantidade de meses: 12\n",
+            "Assistente:\n",
+            "Se você investir R$500.0 por 12 meses, terá aproximadamente R$6404.66\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
